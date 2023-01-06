@@ -3,17 +3,15 @@ from flask import Flask,render_template, flash, url_for, redirect
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash 
 from datetime import datetime 
-import uuid as uuid
 
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-import uuid as uuid
 
 from web_forms import LoginForm, UserForm
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:sm7wx98d6kbi8@localhost:9999/testing"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:sm7wx98d6kbi8@localhost:5432/testing"
 
 app.config['SECRET_KEY'] = "fswfwsfwvferbvegbegwrgvfegerferwfw"
 
@@ -44,11 +42,13 @@ def register():
 			user = Users(username=form.username.data, name=form.name.data, email=form.email.data, password_hash=hashed_pw)
 			db.session.add(user)
 			db.session.commit()
+			
 		name = form.name.data
 		form.name.data = ''
 		form.username.data = ''
 		form.email.data = ''
 		form.password_hash.data = ''
+		
 		flash("Registration Completed!")
 	our_users = Users.query.order_by(Users.date_added)
 	return render_template("register.html", form=form,name=name,our_users=our_users)
@@ -77,8 +77,9 @@ def login():
 @login_required
 def logout():
 	logout_user()
-	flash("You Have Been Logged Out!  Thanks For Stopping By...")
+	flash("You Have Been Logged Out! Thanks For Stopping By...")
 	return redirect(url_for('login'))
+
 
 @app.route('/')
 def index():
@@ -86,19 +87,9 @@ def index():
 
 
 @app.route('/main')
+@login_required
 def main():
     return render_template('main.html')
-
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
-
-
-@app.route('/register')
-def register():
-    return render_template('register.html')
-
 
 
 # User Info Model

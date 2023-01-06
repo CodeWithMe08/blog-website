@@ -24,7 +24,12 @@
           <a href="/main"><i class="uil uil-compass"></i> Main</a>
           <a href="#"><i class="uil uil-info-circle"></i> Projects</a>
           <a href="#"><i class="uil uil-document-layout-left"></i> About</a>
-          <a href="/login"><i class="uil uil-envelope"></i> login</a>
+          {% if current_user.is_authenticated %}
+          <a href="{{ url_for('logout')}}"><i class="uil uil-envelope"></i> Logout</a>
+          {% else %}
+          <a href="/login"><i class="uil uil-envelope"></i> Login</a>
+          <a href="/register"><i class="uil uil-envelope"></i> Register</a>
+          {% endif %}
         </div>
       </div>
       <i class="uil uil-apps nav-menu-btn"></i>
