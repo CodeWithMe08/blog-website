@@ -21,10 +21,12 @@
  --search-bg:  #14162b;
  --overlay-bg: rgba(36, 39, 59, 0.3);
  --scrollbar-bg: rgb(1 2 3 / 40%);
+ height: 100%;
+ margin-top: -0.7%;
 }
 
 .light-mode {
-  --theme-bg-color: rgb(255 255 255 / 31%);
+  // --theme-bg-color: rgb(255 255 255 / 31%);
  --theme-color: #3c3a3a;
  --inactive-color: #333333;
   --button-inactive: #3c3a3a;
@@ -46,15 +48,16 @@ html {
 
 body {
  font-family: var(--body-font);
- background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
- background-size: cover;
- background-position: center;
+ background-color: #14162b;
+//  background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
+//  background-size: cover;
+//  background-position: center;
  display: flex;
- justify-content: center;
- align-items: center;
+//  justify-content: center;
+//  align-items: center;
  flex-direction: column;
- padding: 2em;
- width: 100%;
+//  padding: 2em;
+//  width: 100%;
  height: 100vh;
  @media screen and (max-width: 480px) {
   padding: 0.8em;
@@ -131,9 +134,9 @@ body.light-mode .video-bg:before {
 
 .app {
  background-color: var(--theme-bg-color);
- max-width: 1250px;
- max-height: 860px;
- height: 90vh;
+//  max-width: 1250px;
+//  max-height: 860px;
+//  height: 90vh;
  display: flex;
  flex-direction: column;
  overflow: hidden;
